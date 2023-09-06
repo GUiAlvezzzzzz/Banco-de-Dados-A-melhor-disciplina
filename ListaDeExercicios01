@@ -3,3 +3,7 @@ SELECT nome FROM autores WHERE data_nascimento < '1900-01-01';
 SELECT titulo FROM livros WHERE autor_id = (SELECT id FROM autores WHERE nome = 'J.K. Rowling');
 SELECT nome FROM alunos WHERE curso_id = (SELECT id FROM cursos WHERE nome = 'Engenharia de Software');
 SELECT produto, SUM(receita) AS receita_total FROM transacoes GROUP BY produto;
+SELECT autores.nome AS autor, COUNT(livros.id) AS total_livros
+FROM autores
+LEFT JOIN livros ON autores.id = livros.autor_id
+GROUP BY autores.nome;
