@@ -1,3 +1,4 @@
 SELECT titulo FROM livros; 
 SELECT nome FROM autores WHERE data_nascimento < '1900-01-01';
 SELECT titulo FROM livros WHERE autor_id = (SELECT id FROM autores WHERE nome = 'J.K. Rowling');
+SELECT nome FROM alunos WHERE curso_id = (SELECT id FROM cursos WHERE nome = 'Engenharia de Software');
