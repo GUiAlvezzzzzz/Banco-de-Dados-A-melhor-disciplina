@@ -210,3 +210,13 @@ BEGIN
     -- Se nenhum livro for encontrado, imprime uma mensagem informando que a categoria não possui livros.
         PRINT 'A categoria não possui livros.';
     END;               
+
+CREATE PROCEDURE sp_LivrosAteAno
+    @AnoPublicacao INT
+AS
+BEGIN
+    SELECT Titulo
+    FROM Livro
+    WHERE Ano_Publicacao <= @AnoPublicacao;
+END;                       
+
