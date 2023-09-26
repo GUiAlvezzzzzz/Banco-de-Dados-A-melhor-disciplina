@@ -158,3 +158,9 @@ VALUES (1, 1),
     (9, 19),
     (10, 20);
 
+CREATE PROCEDURE sp_ListarAutores
+AS
+BEGIN
+    SELECT Nome, Sobrenome
+    FROM Autor;
+END;      
