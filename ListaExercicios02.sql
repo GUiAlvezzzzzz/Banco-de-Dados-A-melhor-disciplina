@@ -1,7 +1,15 @@
-CREATE PROCEDURE sp_TitulosPorCategoria(IN CategoriaNome VARCHAR(100))
+CREATE PROCEDURE sp_AdicionarLivro
+    @Titulo NVARCHAR(255),
+    @EditoraID INT,
+    @AnoPublicacao INT
+AS
 BEGIN
-    SELECT Livro.Titulo
-    FROM Livro
-    INNER JOIN Categoria ON Livro.Categoria_ID = Categoria.Categoria_ID
-    WHERE Categoria.Nome = CategoriaNome;
-END;
+    BEGIN TRY
+        INSERT INTO Livro (Titulo, Editora_ID, Ano_Publicacao)
+        VALUES (@Titulo, @EditoraID, @AnoPublicacao);
+        PRINT 'Livro adicionado com sucesso.';
+    END TRY
+    BEGIN CATCH
+        PRINT 'Erro ao adicionar o livro. Certifique-se de que o título seja único.';
+    END CATCH;
+END;               
