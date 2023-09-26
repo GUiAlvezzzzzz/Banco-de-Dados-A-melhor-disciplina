@@ -1,8 +1,7 @@
-CREATE PROCEDURE sp_LivrosAteAno
-    @AnoPublicacao INT
-AS
+CREATE PROCEDURE sp_TitulosPorCategoria(IN CategoriaNome VARCHAR(100))
 BEGIN
-    SELECT Titulo
+    SELECT Livro.Titulo
     FROM Livro
-    WHERE Ano_Publicacao <= @AnoPublicacao;
-END;                       
+    INNER JOIN Categoria ON Livro.Categoria_ID = Categoria.Categoria_ID
+    WHERE Categoria.Nome = CategoriaNome;
+END;
