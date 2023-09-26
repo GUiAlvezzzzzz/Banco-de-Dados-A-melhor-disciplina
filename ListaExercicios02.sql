@@ -243,3 +243,11 @@ BEGIN
         PRINT 'Erro ao adicionar o livro. Certifique-se de que o título seja único.';
     END CATCH;
 END;                               
+
+CREATE PROCEDURE sp_AutorMaisAntigo
+AS
+BEGIN
+    SELECT TOP 1 Nome, Sobrenome
+    FROM Autor
+    ORDER BY Data_Nascimento ASC;
+END;                                                                 
