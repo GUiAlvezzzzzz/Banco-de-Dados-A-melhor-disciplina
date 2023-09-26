@@ -186,3 +186,27 @@ BEGIN
     INNER JOIN Categoria ON CategoriaLivro.Categoria_ID = Categoria.Categoria_ID
     WHERE Categoria.Nome = @Categoria;
 END;                 
+
+-- Esta stored procedure verifica se uma categoria possui livros.
+-- Ela aceita um parâmetro de entrada @Categoria que especifica a categoria a ser verificada.
+CREATE PROCEDURE sp_VerificarLivrosCategoria
+    @Categoria NVARCHAR(255)
+AS
+BEGIN
+-- Verifica se existem livros associados à categoria fornecida.
+    IF EXISTS (
+        SELECT 1
+        FROM Livro
+        INNER JOIN CategoriaLivro ON Livro.Livro_ID = CategoriaLivro.Livro_ID
+        INNER JOIN Categoria ON CategoriaLivro.Categoria_ID = Categoria.Categoria_ID
+        WHERE Categoria.Nome = @Categoria
+    )
+    BEGIN
+  -- Se livros forem encontrados, imprime uma mensagem informando que a categoria possui livros.
+        PRINT 'A categoria possui livros.';
+    END
+    ELSE
+    BEGIN
+    -- Se nenhum livro for encontrado, imprime uma mensagem informando que a categoria não possui livros.
+        PRINT 'A categoria não possui livros.';
+    END;               
